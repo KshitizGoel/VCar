@@ -2,6 +2,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'Posts.dart';
+import 'DialogBox.dart';
+
 
 class SearchManually extends StatefulWidget{
   @override
@@ -18,7 +20,7 @@ class SearchManuallyState extends State<SearchManually>{
   String contactNumberFromDB;
 
   List <Posts> postsList = [];
-
+  DialogBox dialogBox = DialogBox();
   String phoneNumberCalling;
 
   @override
@@ -77,20 +79,20 @@ class SearchManuallyState extends State<SearchManually>{
               child: RaisedButton(
                 padding: EdgeInsets.all(10.0),
                 elevation: 20.0,
-                color: Colors.orange,
+                color: Colors.black,
                 child: Column(
                   children: <Widget>[
 
                     Icon(
                       Icons.search,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
 
                     Text(
                       "Search",
                       style: TextStyle(
                           fontSize: 20.0,
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold
                       ),
                     ),
@@ -102,37 +104,51 @@ class SearchManuallyState extends State<SearchManually>{
 
                   String carNumberInput = carNumberController.text.toString().replaceAll(" ", "");
 
+                  postsList.clear();
+                  dbRef.orderByChild("carNo").equalTo(carNumberInput.trim()).once().then(
+                          (DataSnapshot snap) {
 
-                  dbRef.orderByChild("carNo").equalTo(carNumberInput).once().then(
-                          (DataSnapshot snap){
-                            // ignore: non_constant_identifier_names
+                          // ignore: non_constant_identifier_names
+                          var DATA = snap.value;
+
+                          postsList.clear();
+                          if (DATA != null) {
+
                             var KEYS = snap.value.keys;
-                            var DATA = snap.value;
 
-                            postsList.clear();
 
-                            for(var individualKey in KEYS){
-
+                            for (var individualKey in KEYS) {
                               Posts posts = Posts(
-                              DATA[individualKey]["carNo"],
-                              DATA[individualKey]["phoneNo"],
-                              DATA[individualKey]["ownerName"],
-                              DATA[individualKey]["flatNo"],
+                                DATA[individualKey]["carNo"],
+                                DATA[individualKey]["phoneNo"],
+                                DATA[individualKey]["ownerName"],
+                                DATA[individualKey]["flatNo"],
                               );
                               postsList.add(posts);
                             }
 
-                            setState((){
+                            setState(() {
                               this.postsList = postsList;
                             });
                           }
+                        else{
+                          //Alert Dialog
+                            postsList.clear();
+
+                          dialogBox.information(context, "No Information :(","This car does not belong to any resident of Veer Apartment! ");
+                        }
+                      }
                   );
                 },
               ),
             ),
 
             Container(
-              child: postsList.length==0? Text(" ") : ListView.builder(
+              child: postsList.length==0?
+
+                 Text("")
+
+              : ListView.builder(
                   shrinkWrap: true,
 
                   itemCount: postsList.length,

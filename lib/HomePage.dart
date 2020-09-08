@@ -47,6 +47,7 @@ class HomePageState extends State<HomePage>{
         children: <Widget>[
 
 
+
           GestureDetector(
             onTap: (){
               Navigator.push(context,
@@ -57,7 +58,7 @@ class HomePageState extends State<HomePage>{
             },
 
            child: Card(
-              elevation: 20.0,
+              elevation: 25.0,
 
               margin: EdgeInsets.only(top:7.0, bottom: 15.0, left:10.0 , right:10.0),
 
@@ -75,7 +76,7 @@ class HomePageState extends State<HomePage>{
                       "Enter car number manually",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 25.0
+                          fontSize: 20.0
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -102,7 +103,7 @@ class HomePageState extends State<HomePage>{
             },
 
             child:   Card(
-              elevation: 20.0,
+              elevation: 25.0,
 
               margin: EdgeInsets.only(top:15.0, bottom: 15.0, left:10.0 , right:10.0),
 
@@ -121,7 +122,7 @@ class HomePageState extends State<HomePage>{
                         "Use our AI system",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 25.0
+                            fontSize: 20.0
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -142,7 +143,7 @@ class HomePageState extends State<HomePage>{
             },
 
             child:  Card(
-            elevation: 10.0,
+            elevation: 25.0,
 
             margin: EdgeInsets.only(top:15.0, bottom: 15.0, left:10.0 , right:10.0),
 
