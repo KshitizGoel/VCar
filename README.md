@@ -1,16 +1,5 @@
 # vkar
 
-A new Flutter application.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+VeeCar is an AI powered Car parking app which is fully operational in Veer Apartments. This app has high end UI and a super easy UI for the people above the age of 50 who have difficulty in using the complex apps.
+The backend of this app is backed by Firebase Authentication, Firebase Realtime Database and Firebase Ml kit vision.
+The app has also been uploaded to the Google Play Store and will be published soon on Apple App Store.
